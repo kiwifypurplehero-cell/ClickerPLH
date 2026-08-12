@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#18284a">
+  <title>Clicker PLH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="pixel-hud">
+    <div class="brand">CLICKER <b>PLH</b><small>v1.0.0</small></div>
+    <div class="resource coin"><i></i><span><strong id="coins">0</strong><small>MOEDAS</small></span></div>
+    <div class="resource rate"><i></i><span><strong><b id="cps">0</b>/s</strong><small>PRODUÇÃO</small></span></div>
+    <div class="resource crystal"><i></i><span><strong id="crystals">0</strong><small>CRISTAIS</small></span></div>
+  </header>
+
+  <aside id="worldInfo" class="pixel-plate">
+    <b>PRÓXIMO MARCO</b><span id="nextUnlock"></span>
+    <div class="progress"><i id="unlockBar"></i></div>
+  </aside>
+
+  <main id="world" aria-label="Mundo isométrico Clicker PLH">
+    <canvas id="worldCanvas"></canvas>
+    <div id="worldFx" aria-hidden="true"></div>
+    <div id="clickPedestal">
+      <button id="clickButton" aria-label="Gerar moedas">CLICK</button>
+    </div>
+    <button id="golden" hidden aria-label="Evento especial"><span>✦</span></button>
+    <div id="buffs"></div>
+    <div id="worldTip">TOQUE, MOUSE OU ESPAÇO</div>
+  </main>
+
+  <nav id="tabs" aria-label="Menu do jogo">
+    <button data-tab="shop"><i class="ico hammer"></i><span>LOJA</span><em id="shopBadge"></em></button>
+    <button data-tab="special" data-unlock="special"><i class="ico star"></i><span>ESPECIAIS</span></button>
+    <button data-tab="missions" data-unlock="missions"><i class="ico scroll"></i><span>MISSÕES</span></button>
+    <button data-tab="achievements" data-unlock="achievements"><i class="ico cup"></i><span>CONQUISTAS</span></button>
+    <button data-tab="prestige" data-unlock="prestige"><i class="ico gem"></i><span>PRESTIGE</span></button>
+    <button data-tab="stats"><i class="ico chart"></i><span>STATUS</span></button>
+    <button data-tab="settings"><i class="ico gear"></i><span>OPÇÕES</span></button>
+  </nav>
+
+  <section id="shop" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><div class="section-head"><div><h2>OFICINA PLH</h2><p>Melhore seus equipamentos e construa máquinas.</p></div><div class="buy-modes" id="buyModes"><button class="active">1</button><button>10</button><button>25</button><button>100</button><button>MAX</button></div></div><h3>UPGRADES</h3><div id="upgrades" class="cards"></div><h3>GERADORES</h3><div id="generators" class="cards"></div></section>
+  <section id="special" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><h2>FORJA ESPECIAL</h2><p>Marcos únicos que duram até o próximo Prestige.</p><div id="specials" class="cards"></div></section>
+  <section id="missions" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><h2>QUADRO DE MISSÕES</h2><p>Complete objetivos e resgate recompensas.</p><div id="missionList" class="cards"></div></section>
+  <section id="achievements" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><h2>SALÃO DE CONQUISTAS</h2><p id="achievementSummary"></p><div id="achievementList" class="cards achievements"></div></section>
+  <section id="prestige" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><div class="prestige-hero"><span class="big-gem">◆</span><h2>PORTAL DE PRESTIGE</h2><p>Recomece a jornada normal e conserve cristais, conquistas, tempo jogado e melhorias permanentes.</p><h3>VOCÊ RECEBERÁ <b id="prestigeGain">0</b> CRISTAIS PLH</h3><button id="prestigeButton">ATIVAR PORTAL</button></div><h2>LOJA DE CRISTAIS</h2><div id="permanents" class="cards"></div></section>
+  <section id="stats" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><h2>REGISTRO DA ILHA</h2><div id="statsList" class="stat-grid"></div></section>
+  <section id="settings" class="tab pixel-window" hidden><button class="close" aria-label="Fechar">×</button><h2>OPÇÕES</h2><div class="settings-grid"><label>Volume <input id="volume" type="range" min="0" max="1" step=".05"></label><label><input id="particles" type="checkbox"> Partículas</label><label><input id="reducedMotion" type="checkbox"> Reduzir movimento</label><label>Notação <select id="notation"><option value="short">Abreviada</option><option value="scientific">Científica</option></select></label><label><input id="confirmBuy" type="checkbox"> Confirmar compras especiais</label></div><div class="save-tools"><button id="exportSave">EXPORTAR SAVE</button><button id="importSave">IMPORTAR SAVE</button><button id="wipeSave" class="danger">APAGAR PROGRESSO</button></div><p>Clicker PLH v1.0.0<br>Criado por Matheus (Plump) com auxílio do Codex</p></section>
+</div>
+<div id="toasts"></div>
+<div id="modal" class="modal" hidden><div class="pixel-window dialog"><h2 id="modalTitle"></h2><p id="modalText"></p><textarea id="modalInput" hidden></textarea><footer><button id="modalCancel">CANCELAR</button><button id="modalOk">CONFIRMAR</button></footer></div></div>
+<div id="tutorial" class="modal" hidden><div class="pixel-window dialog"><h2>BEM-VINDO À ILHA PLH!</h2><p>Pressione o botão <b>CLICK</b> para ganhar moedas. Abra a oficina para comprar upgrades e construir máquinas no mundo.</p><button id="tutorialOk">COMEÇAR</button></div></div>
+<script src="script.js"></script>
+</body></html>
